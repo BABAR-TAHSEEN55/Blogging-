@@ -33,3 +33,20 @@
     </div>
   </div>
 </nav>
+
+
+
+<div class="container mt-4 ">
+
+
+<% if (locals.error) { %>
+<div class="alert alert-danger" role="alert">
+<div class='container rounded-pill'>
+
+<%= locals.error %>
+</div>
+</div>
+</div>
+<% } %>
+
+</div>
