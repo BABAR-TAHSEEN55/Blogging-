@@ -15,6 +15,8 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 app.use("/user", router);
+
+
 app.listen(PORT, () => {
   console.log(`Sever Started at ${PORT}`);
 });
