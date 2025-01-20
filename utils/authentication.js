@@ -20,4 +20,4 @@ const ValidateToken = (token) => {
   });
   return payload;
 };
-export default { CreateToken, ValidateToken };
+export { CreateToken, ValidateToken };
