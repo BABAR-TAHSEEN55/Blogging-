@@ -27,11 +27,12 @@ const UserSchema = new Schema(
 UserSchema.pre("save", async function (next) {
   const user = this;
   if (!user.isModified("password")) return next();
-  const hashedPassword = bcrypt.hash(this.password, 10);
+  const hashedPassword = await bcrypt.hash(this.password, 10);
   this.password = hashedPassword;
   console.log(hashedPassword);
   console.log(this.password);
-  next();
+  hashedPassword ? next() : console.log("Errro");
+  // console.log(user);
 });
 const User = model("User", UserSchema);
 export default User;
