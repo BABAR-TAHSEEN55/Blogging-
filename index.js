@@ -7,13 +7,15 @@ import { ValidateAuthenticationAndCookie } from "./middlewares/auth.js";
 const app = express();
 const PORT = process.env.PORT || 9000;
 
+import BlogsRoute from "./routes/blogs.js";
 ConnectMongoDb("mongodb://localhost:27017/blog")
   .then(() => console.log("MongoDB Connected Successfully"))
   .catch((e) => console.log("Error connecting"));
 app.use(express.urlencoded({ extended: true }));
-app.use("/user", router);
 app.use(cookieParser());
 app.use(ValidateAuthenticationAndCookie("token"));
+app.use("/user", router);
+app.use("/newblogs", BlogsRoute);
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views/"));

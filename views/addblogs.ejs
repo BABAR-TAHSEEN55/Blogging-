@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/head') %>
+</head>
+
+<body>
+  <%- include('./partials/nav') %>
+    <div class="container mb-3 mt-3">
+<div class="mb-3">
+  <label for="CoverImage" class="CoverImage">Default file input example</label>
+  <input class="form-control" type="file" id="formFile">
+</div>
+
+<div class="mb-3">
+  <label for="Title" class="form-label">Title</label>
+  <input type="Title" class="form-control" id="Title" >
+</div>
+<div class="mb-3">
+  <label for="Body" class="form-label">Body </label>
+  <textarea class="form-control" id="Body" rows="3"></textarea>
+</div>
+
+<div class="mb-3">
+<Button class="btn btn-info">Submit</Button>
+</div>
+
+      </form>
+    </div>
+
+      <%- include('./partials/scripts') %>
+</body>
+
+</html>
