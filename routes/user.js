@@ -10,7 +10,7 @@ router
       return res.json({ message: "Email or Password is required " });
     try {
       const user = await User.findOne({ Email });
-      const isMatch = bcrypt.compare(password, user.password);
+      const isMatch = await bcrypt.compare(password, user.password);
       console.log(isMatch);
       isMatch
         ? console.log("Password is Correct")
@@ -19,13 +19,14 @@ router
       if (isMatch) {
         const token = CreateToken(user);
         res.cookie("token", token).redirect("/");
+      } else {
+        res.render("signin", {
+          error: "Incorrect Email or Password ",
+        });
       }
     } catch (error) {
-      // console.log(error);
-
-      res.render("signin", {
-        error: "Incorrect Email or Password ",
-      });
+      console.log("Sign-In Error");
+      return res.status(500).json({ Message: "An Unexpected Error Occurred" });
     }
   })
   .get("/signup", (req, res) => {
@@ -45,6 +46,10 @@ router
   })
   .get("/signin", (req, res) => {
     res.render("signin");
+  })
+  .get("/logout", (req, res) => {
+    res.clearCookie("token");
+    res.redirect("/");
   });
 
 export default router;

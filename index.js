@@ -1,21 +1,27 @@
 import express from "express";
 import path from "path";
 import router from "./routes/user.js";
+import { ConnectMongoDb } from "./connections/connections.js";
+import cookieParser from "cookie-parser";
+import { ValidateAuthenticationAndCookie } from "./middlewares/auth.js";
 const app = express();
 const PORT = process.env.PORT || 9000;
 
-import { ConnectMongoDb } from "./connections/connections.js";
 ConnectMongoDb("mongodb://localhost:27017/blog")
   .then(() => console.log("MongoDB Connected Successfully"))
   .catch((e) => console.log("Error connecting"));
 app.use(express.urlencoded({ extended: true }));
+app.use("/user", router);
+app.use(cookieParser());
+app.use(ValidateAuthenticationAndCookie("token"));
+
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views/"));
 app.get("/", (req, res) => {
-  res.render("home");
+  res.render("home", {
+    user: req.user,
+  });
 });
-app.use("/user", router);
-
 
 app.listen(PORT, () => {
   console.log(`Sever Started at ${PORT}`);
