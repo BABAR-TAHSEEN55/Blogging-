@@ -7,8 +7,27 @@
 
 <body>
   <%- include('./partials/nav') %>
+    <div class="conatiner mt-5 ps-2 ">
 
-    <%= JSON.stringify(user) %>
+
+      <% blogs.forEach(function(blog) { %>
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src=<%=blog.CoverImage %>
+          alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= blog.Title %>
+            </h5>
+            <p>
+
+              <%= blog.Body %>
+            </p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+        <% }); %>
+    </div>
+    <%= JSON.stringify(blogs) %>
       <%- include('./partials/scripts') %>
 </body>
 
