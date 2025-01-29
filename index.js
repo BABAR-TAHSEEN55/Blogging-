@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(ValidateAuthenticationAndCookie("token"));
 app.use("/user", router);
 app.use("/newblogs", BlogsRoute);
-app.use(express.static(path.resolve("./public")));
+app.use(express.static(path.resolve("./public"))); //This is used for Rendering images as express won't allow dynamic rendering we have to mention explicitly
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views/"));
 app.get("/", async (req, res) => {
