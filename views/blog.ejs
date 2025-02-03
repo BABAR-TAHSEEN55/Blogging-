@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/head') %>
+</head>
+
+<body>
+  <%- include('./partials/nav') %>
+
+  <div class="container mt-5 ps-4">
+    <h4 class="mt-4 ml-4 fw-bold">
+      <%= blog.Title %>
+    </h4>
+    <img src="<%= blog.CoverImage %>" width="500px" class="mt-4" />
+    
+    <pre class="mt-4 w-100 text-wrap">
+      <%= blog.Body %>
+    </pre>
+    
+    <b>
+      <p>
+        ~ By <%= blog.CreatedBy.FullName %>
+      </p>
+    </b>
+
+    <% if (locals.user) { %>
+      <div class="container mt-4">
+        <form action="/newblogs/blog/comments/<%= blog._id %>" method="post">
+          <div class="mb-3">
+            <label for="exampleinputemail1" class="form-label">
+
+           <h2>
+<b>
+Comment(<%=comment.length %>) 
+</b>
+</label>
+           </h2> 
+            </label>
+            <input
+              type="text"
+              name="Content"
+              class="form-control"
+              placeholder="Enter your Comment"
+            />
+            <button class="btn btn-primary mt-4">Submit</button>
+          </div>
+        </form>
+      </div>
+
+    <% } %>
+
+      <div class="container mx-auto">
+        <% comment.forEach(function(comment) { %>
+          <div class="container mx-auto">
+            <b>
+              <%= comment.CreatedBy.FullName %> : -
+              <%= comment.Content %>
+            </b>
+          </div>
+        <% }); %>
+      </div>
+  </div>
+
+  <%- include('./partials/scripts') %>
+</body>
+
+</html>
