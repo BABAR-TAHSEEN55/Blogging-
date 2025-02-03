@@ -36,6 +36,7 @@ router
     const { FullName, Email, password } = req.body;
     if ((!(Email || password) === null) | undefined)
       return res.json({ message: "INVALID " });
+
     await User.create({
       FullName,
       Email,
