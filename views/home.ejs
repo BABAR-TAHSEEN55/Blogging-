@@ -7,28 +7,27 @@
 
 <body>
   <%- include('./partials/nav') %>
-    <div class="conatiner mt-5 ps-2 ">
+    <div class="conatiner mt-5 ps-2 row ">
 
 
       <% blogs.forEach(function(blog) { %>
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src=<%=blog.CoverImage %>
+        <div class="card mx-4 mb-3" style="width: 18rem;">
+          <img class="card-img-top mt-4 mx-auto container" src=<%=blog.CoverImage %>
           alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">
               <%= blog.Title %>
             </h5>
-            <p>
+            <p class="text-truncate">
 
               <%= blog.Body %>
             </p>
-            <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+            <a href="/newblogs/blog/<%= blog._id %>" class="btn btn-primary">View</a>
           </div>
         </div>
         <% }); %>
     </div>
-    <%= JSON.stringify(blogs) %>
-      <%- include('./partials/scripts') %>
+    <%- include('./partials/scripts') %>
 </body>
 
 </html>
