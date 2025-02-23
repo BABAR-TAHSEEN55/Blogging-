@@ -3,7 +3,6 @@ import path from "path";
 import router from "./routes/user.js";
 import dotenv from "dotenv";
 dotenv.config();
-// Add this near the top of your index.js after dotenv.config()
 console.log("MongoDB URL exists:", !!process.env.MONGO_URL);
 import { ConnectMongoDb } from "./connections/connections.js";
 import cookieParser from "cookie-parser";
@@ -20,7 +19,7 @@ ConnectMongoDb(process.env.MONGO_URL)
       "URL used : ",
       process.env.MONGO_URL ? "URL Exits" : "URL doesn't Exists",
     );
-    console.log("Error connecting", e);
+    console.log("Error connectingt to MongoDB", e);
   });
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
